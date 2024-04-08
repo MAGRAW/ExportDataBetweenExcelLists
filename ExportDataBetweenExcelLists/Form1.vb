@@ -638,7 +638,7 @@ g1:
                         Ceels_from = PhoneticNotation2(i)
                     End If
                     xlsSheet2.Range(Ceels_from).FormulaLocal = "=" & iFormula
-                    xlsSheet2.Range(Ceels_from).Copy()
+                    xlsSheet2.Range(Ceels_from).Copy() 'ToDo: программа в скомпилированном виде выполняет это
                     ExcelPasteSettingFunction(xlsSheet2, PhoneticNotation2(i), var)
                 ElseIf Value1(i) = 2 Then 'вставка значения
                     xlsSheet2.Range(PhoneticNotation2(i)).Copy()
