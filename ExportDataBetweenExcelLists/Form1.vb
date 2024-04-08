@@ -515,9 +515,9 @@ g1:
             'If Trim(TextBox1.Text) <> "" Then
             'xlsBook1 = xlsApp.Workbooks.Open(TextBox1.Text) 'Открываем существующий Excel файл
             xlsBook1 = xlsApp.Workbooks.Open(adres1,
-                                             Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-                                             Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-                                             Type.Missing, Type.Missing, Type.Missing, True)
+        Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+        Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+        Type.Missing, Type.Missing, Type.Missing, True)
             'If Trim(TextBox2.Text) <> "" Then 
             'xlsBook2 = xlsApp.Workbooks.Open(TextBox2.Text) 'Открываем существующий Excel файл
             xlsBook2 = xlsApp.Workbooks.Open(adres2,
@@ -709,7 +709,7 @@ g1:
                 "]" &
                 Sheet_from &
                 "'!" &
-                Ceels_from
+        Ceels_from
     End Sub
 
     Function БукваСтолбца(ByRef xlsApp As Object, ByVal col As Long) As String
@@ -880,10 +880,10 @@ g1:
         End If
 
         If My.Computer.FileSystem.FileExists(adres1) = True And
-           My.Computer.FileSystem.FileExists(adres2) = True Then
+        My.Computer.FileSystem.FileExists(adres2) = True Then
             If NameLR <> "" Then TextBox4.Text = NameLR 'печать имени шаблона 
         ElseIf My.Computer.FileSystem.FileExists(adres1) = False And
-               My.Computer.FileSystem.FileExists(adres2) = False Then
+        My.Computer.FileSystem.FileExists(adres2) = False Then
             hFile1 = FreeFile()
             FileOpen(hFile1, MyPath & "\" & "range.tmp", OpenMode.Output)
             PrintLine(hFile1, Name)
@@ -1025,7 +1025,7 @@ g1:
         Dim str_var As String
 
         If RichTextBox3.Text <> "" And RichTextBox4.Text <> "" And RichTextBox5.Text <> "" And
-           RichTextBox6.Text <> "" And RichTextBox7.Text <> "" And RichTextBox8.Text <> "" Then
+        RichTextBox6.Text <> "" And RichTextBox7.Text <> "" And RichTextBox8.Text <> "" Then
             hFile1 = FreeFile()
             FileOpen(hFile1, adres1, OpenMode.Append)
 

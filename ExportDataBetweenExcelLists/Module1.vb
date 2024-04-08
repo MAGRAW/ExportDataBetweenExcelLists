@@ -315,7 +315,7 @@ erCh:
             stroka = LineInput(2)
         Next i
 
-        ident2 = "" : j = 0
+        ident2 = ""  j = 0
         Do While ident2 <> "R"
             j = j + 1
             'stroka = FileSystem.LineInput(2)
