@@ -463,7 +463,8 @@ g1:
         Dim iRow2 As Long
         Dim iClm1 As Integer
         Dim iClm2 As Integer
-        Dim reiteration As Boolean
+        Dim reiteration As Boolean 'усложнение исказившее довольно простой алгоритм. Бахтизин б...н.
+        '}{R@n пойми, что с этим делать методологически. Выковыривать методологию обратно?
 
         Dim adres1 As String
         Dim adres2 As String
@@ -515,9 +516,9 @@ g1:
             'If Trim(TextBox1.Text) <> "" Then
             'xlsBook1 = xlsApp.Workbooks.Open(TextBox1.Text) 'Открываем существующий Excel файл
             xlsBook1 = xlsApp.Workbooks.Open(adres1,
-        Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-        Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-        Type.Missing, Type.Missing, Type.Missing, True)
+                                             Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                                             Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                                             Type.Missing, Type.Missing, Type.Missing, True)
             'If Trim(TextBox2.Text) <> "" Then 
             'xlsBook2 = xlsApp.Workbooks.Open(TextBox2.Text) 'Открываем существующий Excel файл
             xlsBook2 = xlsApp.Workbooks.Open(adres2,
@@ -545,7 +546,8 @@ g1:
             Value3_(i) = Value3(i)
         Next
         For i = 0 To UBound(Word1) - 1
-            If Value4(i) <> "Nothing" And Value4(i) <> "" And Trim(CStr(Value4(i))) <> "0" Then
+            If Value4(i) <> "Nothing" And Value4(i) <> "" And Trim(CStr(Value4(i))) <> "0" And
+                (Value4(i) <> "TO" And Value4(i) <> "FROM") Then
                 reiteration = False
                 For j = LBound(UniqueAddres1) To UBound(UniqueAddres1)
                     If Trim(UniqueAddres1(j)) = Trim(Value4(i)) Then
@@ -569,14 +571,17 @@ g1:
                     UniqueBook1(k) = oBook1
                     k = k + 1
                 End If
+            ElseIf Value4(i) = "TO" Then
+                oBook1 = xlsBook2
             ElseIf Value4(i) <> "GLOBAL" Then 'Ссылка на глобальный источник книги из TextBox1 (Бахтизин попросил, б...н)
-                oBook1 = xlsBook1
+                oBook1 = xlsBook1             '}{R@n пойми, что с этим делать методологически
             Else
                 oBook1 = xlsBook1
             End If
             xlsSheet1 = CType(oBook1.Sheets.Item(Word1(i)), Excel.Worksheet) 'Получаем лист по его имени (или порядковому номеру, если передаём Integer, т.е. xlsBook.Sheets(0))
 
-            If Value5(i) <> "Nothing" And Value5(i) <> "" And Trim(CStr(Value5(i))) <> "0" Then
+            If Value5(i) <> "Nothing" And Value5(i) <> "" And Trim(CStr(Value5(i))) <> "0" And
+                (Value5(i) <> "TO" And Value5(i) <> "FROM") Then
                 reiteration = False
                 For j = LBound(UniqueAddres2) To UBound(UniqueAddres2)
                     If Trim(UniqueAddres2(j)) = Trim(Value5(i)) Then
@@ -597,8 +602,10 @@ g1:
                     UniqueBook2(k) = oBook2
                     k = k + 1
                 End If
+            ElseIf Value5(i) = "FROM" Then
+                oBook2 = xlsBook1
             ElseIf Value5(i) <> "GLOBAL" Then 'Ссылка на глобальный источник книги из TextBox2 (Бахтизин попросил, б...н)
-                oBook2 = xlsBook2
+                oBook2 = xlsBook2             '}{R@n пойми, что с этим делать методологически
             Else
                 oBook2 = xlsBook2
             End If
@@ -665,29 +672,29 @@ g1:
             Case 1 'Вставить (А)
                 'ReversMergeCells(iSheet, stroka)
                 iSheet.Range(stroka).PasteSpecial(Paste:=Microsoft.Office.Interop.Excel.XlPasteType.xlPasteAll,
-                                                                           Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
-                                                                           SkipBlanks:=False, Transpose:=False)
+                                                  Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
+                                                  SkipBlanks:=False, Transpose:=False)
                 'ReversMergeCells(iSheet, stroka)
             Case 2 'Значения (З)
                 iSheet.Range(stroka).PasteSpecial(Paste:=Microsoft.Office.Interop.Excel.XlPasteType.xlPasteValues,
-                                                                           Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
-                                                                           SkipBlanks:=False, Transpose:=False)
+                                                  Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
+                                                  SkipBlanks:=False, Transpose:=False)
             Case 3 'Формулы (Ф)
                 iSheet.Range(stroka).PasteSpecial(Paste:=Microsoft.Office.Interop.Excel.XlPasteType.xlPasteFormulas,
-                                                                           Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
-                                                                           SkipBlanks:=False, Transpose:=False)
+                                                  Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
+                                                  SkipBlanks:=False, Transpose:=False)
             Case 4 'Транспонировать (А)
                 iSheet.Range(stroka).PasteSpecial(Paste:=Microsoft.Office.Interop.Excel.XlPasteType.xlPasteAll,
-                                                                           Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
-                                                                           SkipBlanks:=False, Transpose:=True)
+                                                  Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
+                                                  SkipBlanks:=False, Transpose:=True)
             Case 5 'Форматирование (Ф)
                 iSheet.Range(stroka).PasteSpecial(Paste:=Microsoft.Office.Interop.Excel.XlPasteType.xlPasteFormats,
-                                                                           Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
-                                                                           SkipBlanks:=False, Transpose:=False)
+                                                  Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
+                                                  SkipBlanks:=False, Transpose:=False)
             Case 6 'Вставить связь (Ь)
                 iSheet.Range(stroka).PasteSpecial(Paste:=Microsoft.Office.Interop.Excel.XlPasteType.xlPasteValidation,
-                                                                           Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
-                                                                           SkipBlanks:=False, Transpose:=False)
+                                                  Operation:=Microsoft.Office.Interop.Excel.XlPasteSpecialOperation.xlPasteSpecialOperationNone,
+                                                  SkipBlanks:=False, Transpose:=False)
         End Select
     End Sub
 
@@ -2335,6 +2342,7 @@ g1:
         Button20.BackColor = Color.Red
         Button21.BackColor = Me.GroupBox1.BackColor
     End Sub
+
     Private Sub Button21_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button21.Click
         Button16.BackColor = Me.GroupBox1.BackColor
         Button17.BackColor = Me.GroupBox1.BackColor

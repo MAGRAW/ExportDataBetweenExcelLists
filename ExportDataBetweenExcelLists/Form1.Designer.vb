@@ -78,6 +78,7 @@ Partial Class Form1
         Me.RichTextBox7 = New System.Windows.Forms.RichTextBox()
         Me.RichTextBox6 = New System.Windows.Forms.RichTextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.Button26 = New System.Windows.Forms.Button()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Button10 = New System.Windows.Forms.Button()
@@ -92,7 +93,6 @@ Partial Class Form1
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.Button24 = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -115,9 +115,10 @@ Partial Class Form1
         Me.Label1.Location = New System.Drawing.Point(9, 42)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(621, 20)
+        Me.Label1.Size = New System.Drawing.Size(688, 20)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Адрес файла Excel, содержащий диапозон данных для экспорта (копирования):"
+        Me.Label1.Text = "Адрес файла Excel, содержащий диапозон данных для экспорта (копирования). ""FROM"":" &
+    "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'Label2
         '
@@ -125,9 +126,9 @@ Partial Class Form1
         Me.Label2.Location = New System.Drawing.Point(9, 102)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(577, 20)
+        Me.Label2.Size = New System.Drawing.Size(618, 20)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Адрес файла Excel, куда будет импортирован диапазон данных (вставка):"
+        Me.Label2.Text = "Адрес файла Excel, куда будет импортирован диапазон данных (вставка). ""TO"":" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'TextBox2
         '
@@ -182,7 +183,7 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ФайлToolStripMenuItem, Me.СервисToolStripMenuItem, Me.ВидToolStripMenuItem, Me.ОПрограммеToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(875, 36)
+        Me.MenuStrip1.Size = New System.Drawing.Size(584, 33)
         Me.MenuStrip1.TabIndex = 11
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -190,7 +191,7 @@ Partial Class Form1
         '
         Me.ФайлToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ИзменитьШаблонToolStripMenuItem, Me.ЭкспортироватьШаблонToolStripMenuItem, Me.ИмпортироватьШаблонToolStripMenuItem, Me.ВыходToolStripMenuItem})
         Me.ФайлToolStripMenuItem.Name = "ФайлToolStripMenuItem"
-        Me.ФайлToolStripMenuItem.Size = New System.Drawing.Size(69, 32)
+        Me.ФайлToolStripMenuItem.Size = New System.Drawing.Size(69, 29)
         Me.ФайлToolStripMenuItem.Text = "Файл"
         '
         'ИзменитьШаблонToolStripMenuItem
@@ -220,14 +221,14 @@ Partial Class Form1
         'СервисToolStripMenuItem
         '
         Me.СервисToolStripMenuItem.Name = "СервисToolStripMenuItem"
-        Me.СервисToolStripMenuItem.Size = New System.Drawing.Size(87, 32)
+        Me.СервисToolStripMenuItem.Size = New System.Drawing.Size(87, 29)
         Me.СервисToolStripMenuItem.Text = "Сервис"
         '
         'ВидToolStripMenuItem
         '
         Me.ВидToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ВернутьСтандартныйРазмерФормыToolStripMenuItem})
         Me.ВидToolStripMenuItem.Name = "ВидToolStripMenuItem"
-        Me.ВидToolStripMenuItem.Size = New System.Drawing.Size(58, 32)
+        Me.ВидToolStripMenuItem.Size = New System.Drawing.Size(58, 29)
         Me.ВидToolStripMenuItem.Text = "Вид"
         '
         'ВернутьСтандартныйРазмерФормыToolStripMenuItem
@@ -239,7 +240,7 @@ Partial Class Form1
         'ОПрограммеToolStripMenuItem
         '
         Me.ОПрограммеToolStripMenuItem.Name = "ОПрограммеToolStripMenuItem"
-        Me.ОПрограммеToolStripMenuItem.Size = New System.Drawing.Size(141, 32)
+        Me.ОПрограммеToolStripMenuItem.Size = New System.Drawing.Size(141, 29)
         Me.ОПрограммеToolStripMenuItem.Text = "О программе"
         '
         'OpenFileDialog1
@@ -713,6 +714,16 @@ Partial Class Form1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Адреса файлов"
         '
+        'TextBox5
+        '
+        Me.TextBox5.AllowDrop = True
+        Me.TextBox5.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.TextBox5.Location = New System.Drawing.Point(718, 36)
+        Me.TextBox5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(110, 26)
+        Me.TextBox5.TabIndex = 7
+        '
         'Button26
         '
         Me.Button26.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
@@ -863,16 +874,6 @@ Partial Class Form1
         'Timer1
         '
         Me.Timer1.Enabled = True
-        '
-        'TextBox5
-        '
-        Me.TextBox5.AllowDrop = True
-        Me.TextBox5.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.TextBox5.Location = New System.Drawing.Point(718, 36)
-        Me.TextBox5.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(110, 26)
-        Me.TextBox5.TabIndex = 7
         '
         'Form1
         '
